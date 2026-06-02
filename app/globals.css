@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Переопределение системных шрифтов на кастомные переменные из next/font */
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Финтех палитра (Кастомные цвета для крипто-интерфейса) */
+  --color-bg-main: #0b0e11;       /* Глубокий темный фон (как на Binance) */
+  --color-bg-card: #161a1e;       /* Фон для панелей, виджетов и карточек */
+  --color-bg-hover: #21262c;      /* Состояние ховера для элементов */
+  
+  --color-crypto-up: #0ecb81;     /* Зеленый для роста (лонг, покупка) */
+  --color-crypto-down: #f6465d;   /* Красный для падения (шорт, продажа) */
+  
+  --color-text-primary: #eaecef;  /* Основной белый текст */
+  --color-text-secondary: #848e9c;/* Приглушенный серый текст для лейблов */
+  
+  --color-border-primary: #2b3139;/* Тонкие границы между панелями */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Базовые стили для приложения */
+@layer base {
+  html, body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Стилизация скроллбара в стиле торговых терминалов */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-main);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-primary);
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Кастомные утилиты для анимации обновления данных (Flash-эффект) */
+@utility flash-green {
+  animation: flashGreenAnimation 0.5s ease-out;
+}
+
+@utility flash-red {
+  animation: flashRedAnimation 0.5s ease-out;
+}
+
+@keyframes flashGreenAnimation {
+  0% { background-color: rgba(14, 203, 129, 0.2); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flashRedAnimation {
+  0% { background-color: rgba(246, 70, 93, 0.2); }
+  100% { background-color: transparent; }
 }
