@@ -4,6 +4,7 @@
   /* Переопределение системных шрифтов на кастомные переменные из next/font */
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-geist: var(--font-geist-sans);
 
   /* Финтех палитра (Кастомные цвета для крипто-интерфейса) */
   --color-bg-main: #0b0e11;       /* Глубокий темный фон (как на Binance) */
