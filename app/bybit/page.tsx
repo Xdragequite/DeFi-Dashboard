@@ -36,7 +36,7 @@ const page = () => {
   if (error || !data) {
     return (
       <div className="flex h-screen w-full items-center justify-center text-red-500">
-        <p>Ошибка при загрузке данных графика</p>
+        <p>Could not gather graphic data</p>
       </div>
     )
   }
