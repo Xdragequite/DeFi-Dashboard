@@ -6,8 +6,8 @@
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   --font-geist: var(--font-geist-sans);
 
-  /* Финтех палитра (Кастомные цвета для крипто-интерфейса) */
-  --color-bg-main: #0b0e11;       /* Глубокий темный фон (как на Binance) */
+  /* Финтех палитра  */
+  --color-bg-main: #0b0e11;       /* Глубокий темный фон  */
   --color-bg-card: #161a1e;       /* Фон для панелей, виджетов и карточек */
   --color-bg-hover: #21262c;      /* Состояние ховера для элементов */
   
@@ -31,7 +31,6 @@
     overflow-x: hidden;
   }
 
-  /* Стилизация скроллбара в стиле торговых терминалов */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -51,7 +50,6 @@
   }
 }
 
-/* Кастомные утилиты для анимации обновления данных (Flash-эффект) */
 @utility flash-green {
   animation: flashGreenAnimation 0.5s ease-out;
 }

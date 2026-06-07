@@ -30,12 +30,12 @@ function SidebarDeFi() {
     </div>
 
     <nav className='flex flex-col gap-1 p-2 font-geist'>
-      <Link href="" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors text-center font-medium'>1</Link>
-      <Link href="" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>2</Link>
-      <Link href="" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>2</Link>
-      <Link href="" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>2</Link>
-      <Link href="" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>2</Link>
-      <Link href="" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>2</Link>
+      <Link href="/binance" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors text-center font-medium'>Binance</Link>
+      <Link href="/bybit" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>ByBit</Link>
+      <Link href="/coinbase" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>Coinbase</Link>
+      <Link href="/huobi" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>Huobi</Link>
+      <Link href="/mexc" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>MEXC</Link>
+      <Link href="/okx" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>OKX</Link>
     </nav>
     </aside>
     </>
