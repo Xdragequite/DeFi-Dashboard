@@ -1,18 +1,47 @@
 'use client'
 import Charts from '../../components/Charts/Charts'
 import { useGetBybitsChartsQuery } from '@/store/services/bybitApiSlice'
-const page = () => {
-  const { data, error, isLoading } = useGetBybitsChartsQuery({
-    symbol:'BTCUSDT',
-    limit:'60,'
-  })
-  return (
-    <> 
-    <Charts></Charts>
-    <div>{data?.length}</div>
-    </>
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
 
-  )
+export interface CurrentChart {
+  interval:string,
+  symbol:string,
+  limit:string,
+}
+
+const page = () => {
+  const [timeframe, setTimeframe] = useState<CurrentChart>({
+    interval:'1',
+    symbol:'BTCUSDT',
+    limit:'60',
+  });
+  const { data, error, isLoading } = useGetBybitsChartsQuery({
+    symbol:timeframe.symbol,
+    limit:timeframe.limit,
+    interval: timeframe.interval,
+  });
+  const changeTimeFrame = (fields:Partial<CurrentChart>) => (
+    setTimeframe((prev)=>({...prev,...fields}))
+  );
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+      </div>
+    )
+  }
+
+  if (error || !data) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center text-red-500">
+        <p>Ошибка при загрузке данных графика</p>
+      </div>
+    )
+  }
+
+  return <Charts data={data} symbol="BTCUSDT" onChangeTimeframe={changeTimeFrame} currentInterval={timeframe.interval}/>
 }
 
 export default page

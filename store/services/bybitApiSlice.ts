@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export interface CharDataItem {
-    time : string,
+export interface ChartDataItem {
+    time : number,
     price: number,
 }
 interface BybitKlineResponse{
@@ -12,30 +12,27 @@ interface BybitKlineResponse{
 interface Args{
     symbol:string,
     limit:string,
+    interval:string,
 }
-
 export const bybitApi = createApi({
   reducerPath: 'bybitChartsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.bybit.com/v5/' }),
   endpoints: (build) => ({
-    getBybitsCharts : build.query<CharDataItem[],Args>({
-        query : ({symbol,limit}) => ({
+    getBybitsCharts : build.query<ChartDataItem[],Args>({
+        query : ({symbol,limit,interval}) => ({
             url:'market/kline',
             params : {
-                category: 'spot',
-                symbol: symbol , 
-                interval: '60',
-                limit: limit,
+                category: 'spot', //Product type. spot, linear, inverse
+                symbol: symbol , //crypto BTCUSDT
+                interval: interval, // in minutes
+                limit: limit, 
             }
         }),
-        transformResponse : (response:BybitKlineResponse):CharDataItem[] =>{
-            const rawList = response.result.list || []
+        transformResponse : (response:BybitKlineResponse):ChartDataItem[] =>{
+            const rawList = response?.result?.list || []
             return rawList.map((item)=>{
                 return {
-                    time: new Date(parseInt(item[0])).toLocaleString([],{
-                        hour:'2-digit',
-                        minute:'2-digit',
-                    }),
+                    time: parseInt(item[0]),
                     price : parseInt(item[4]),
                 }
             }).reverse();
