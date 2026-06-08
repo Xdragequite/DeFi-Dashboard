@@ -8,11 +8,9 @@ function SidebarDeFi() {
   const toggleSidebar = () => setIsOpen((prev)=>!prev);
   return (
     <>
-    {/* Оверлей для мобилок */}
     {isOpen && (
       <div className="fixed inset-0 z-40 bg-black/50 transition-opacity lg:hidden" onClick={toggleSidebar}></div>
     )}
-    {/* Боковая панель */}
     <Menu onClick={toggleSidebar} size={24} className={`mt-5 ml-5 absolute transition-all duration-300 ease-in-out ${isOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
     <aside className={`fixed lg:relative inset-y-0 rounded-b-xl w-52 bg-zinc-950 border-r border-b border-zinc-800/80 transform transition-all duration-300 ease-in-out 
       ${isOpen ? 'translate-x-0' : '-translate-x-full lg:ml-[-13rem]'}`}>
@@ -32,7 +30,6 @@ function SidebarDeFi() {
     <nav className='flex flex-col gap-1 p-2 font-geist'>
       <Link href="/binance" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors text-center font-medium'>Binance</Link>
       <Link href="/bybit" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>ByBit</Link>
-      <Link href="/coinbase" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>Coinbase</Link>
       <Link href="/huobi" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>Huobi</Link>
       <Link href="/mexc" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>MEXC</Link>
       <Link href="/okx" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>OKX</Link>

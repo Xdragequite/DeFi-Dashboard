@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { counterSlice } from './slices/testSlice';
 import { bybitApi } from './services/bybitApiSlice';
+import { binanceApi } from './services/binanceApiSlice';
+import { huobiApi } from './services/huobiApiSlice';
 export const makeStore = () =>{
     return configureStore({
         reducer:{
             [counterSlice.name]: counterSlice.reducer,
             [bybitApi.reducerPath]: bybitApi.reducer,
+            [binanceApi.reducerPath]: binanceApi.reducer,
+            [huobiApi.reducerPath]: huobiApi.reducer,
         },
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bybitApi.middleware),
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bybitApi.middleware).concat(binanceApi.middleware).concat(huobiApi.middleware),
 
     });
 }

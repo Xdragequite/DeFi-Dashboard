@@ -11,22 +11,24 @@ import {
 import { ChartDataItem } from "@/store/services/bybitApiSlice";
 import { CurrentChart } from "@/app/bybit/page";
 
+interface TimeFrames{
+  label: string,
+  apiLabel: string,
+  interval: string,
+  limit:string
+}
+
 interface DataCharts {
   data: ChartDataItem[] | undefined;
   symbol: string;
-  onChangeTimeframe: (fields: Partial<CurrentChart>) => void;
+  onChangeTimeframe: (interval:string,limit:string,symbol:string) => void;
   currentInterval: string;
+  timeframes: TimeFrames[]
 }
 
-const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,}: DataCharts) => {
+const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,timeframes}: DataCharts) => {
 
-  const TIMEFRAMES = [
-    { label: "1H", interval: "1", limit: "30" },
-    { label: "6H", interval: "5", limit: "30" },
-    { label: "12H", interval: "15", limit: "30" },
-    { label: "1D", interval: "30", limit: "30" },
-    { label: "1M", interval: "D", limit: "30" },
-  ] as const;
+
 
   const priceChange = useMemo(()=>{
     if (!data || data.length < 2) return null;
@@ -48,16 +50,16 @@ const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,}: DataChart
           <span className={`text-sm font-semibold x ${priceChange?.isPositive ? 'text-[#03c087]':'text-[#d80137]'}`}>{priceChange?.isPositive ? `+${priceChange?.value}%` : `${priceChange?.value}%`}</span>
         </div>
         <div className="flex space-x-2 text-xs text-gray-400">
-          {TIMEFRAMES.map((item, index) => {
+          {timeframes.map((item, index) => {
             const isActive = currentInterval === item.interval;
             return (
               <span
                 onClick={() =>
-                  onChangeTimeframe({
-                    interval: item.interval,
-                    limit: item.limit,
-                    symbol: symbol,
-                  })
+                  onChangeTimeframe(
+                    item.interval,
+                    item.limit,
+                    symbol,
+                  )
                 }
                 key={index}
                 className={`hover:bg-slate-700 rounded-sm p-3 cursor-pointer ${isActive ? "bg-slate-700" : "bg-slate-600"}`}
