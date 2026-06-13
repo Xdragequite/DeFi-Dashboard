@@ -1,20 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { counterSlice } from './slices/testSlice';
-import { bybitApi } from './services/bybitApiSlice';
-import { binanceApi } from './services/binanceApiSlice';
-import { huobiApi } from './services/huobiApiSlice';
-export const makeStore = () =>{
-    return configureStore({
-        reducer:{
-            [counterSlice.name]: counterSlice.reducer,
-            [bybitApi.reducerPath]: bybitApi.reducer,
-            [binanceApi.reducerPath]: binanceApi.reducer,
-            [huobiApi.reducerPath]: huobiApi.reducer,
-        },
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bybitApi.middleware).concat(binanceApi.middleware).concat(huobiApi.middleware),
-
-    });
-}
+import { configureStore } from "@reduxjs/toolkit";
+import { counterSlice } from "./slices/testSlice";
+import { bybitApi } from "./services/bybitApiSlice";
+import { binanceApi } from "./services/binanceApiSlice";
+import { huobiApi } from "./services/huobiApiSlice";
+import { mexcApi } from "./services/mexcApiSlice";
+import { okxApi } from "./services/okxApiSlice";
+export const makeStore = () => {
+  return configureStore({
+    reducer: {
+      [counterSlice.name]: counterSlice.reducer,
+      [bybitApi.reducerPath]: bybitApi.reducer,
+      [binanceApi.reducerPath]: binanceApi.reducer,
+      [huobiApi.reducerPath]: huobiApi.reducer,
+      [mexcApi.reducerPath]: mexcApi.reducer,
+      [okxApi.reducerPath]: okxApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .concat(bybitApi.middleware)
+        .concat(binanceApi.middleware)
+        .concat(huobiApi.middleware)
+        .concat(mexcApi.middleware)
+        .concat(okxApi.middleware)
+  });
+};
 export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore['getState']>;
-export type AppDispatch = AppStore['dispatch'];
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];

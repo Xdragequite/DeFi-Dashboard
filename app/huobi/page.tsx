@@ -16,6 +16,7 @@ const TIMEFRAMES = [
   { label: "1D",  interval: "60min", limit: "12", apiLabel: '' },
   { label: "1M",  interval: "1day",  limit: "30", apiLabel: '' },
 ];
+
 const page = () => {
   const [timeframe, setTimeframe] = useState<CurrentChart>({
     period: '1min',     

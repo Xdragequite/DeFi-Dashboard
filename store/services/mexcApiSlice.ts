@@ -4,7 +4,7 @@ export interface ChartDataItem {
   time: number;
   price: number;
 }
-interface binanceKlineResponse {
+interface mexcKlineResponse {
   result: string[][];
 }
 interface Args {
@@ -12,22 +12,21 @@ interface Args {
   limit: string;
   interval: string;
 }
-export const binanceApi = createApi({
-  reducerPath: "binanceChartsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://api.binance.com/api/v3/" }),
+export const mexcApi = createApi({
+  reducerPath: "mexcChartsApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://api.mexc.com" }),
   endpoints: (build) => ({
-    getbinancesCharts: build.query<ChartDataItem[], Args>({
+    getmexcsCharts: build.query<ChartDataItem[], Args>({
       query: ({ symbol, limit, interval }) => ({
-        url: "klines",
+        url: "/api/v3/klines",
         params: {
           symbol: symbol,
           interval: interval,
           limit: limit,
         },
       }),
-      transformResponse: (response: binanceKlineResponse): ChartDataItem[] => {
-        const rawList = response?.result || [];
-        return rawList
+      transformResponse: (response: any[][]): ChartDataItem[] => {
+        return response
           .map((item) => {
             return {
               time: parseInt(item[0]),
@@ -40,4 +39,4 @@ export const binanceApi = createApi({
   }),
 });
 
-export const { useGetbinancesChartsQuery } = binanceApi;
+export const { useGetmexcsChartsQuery } = mexcApi;

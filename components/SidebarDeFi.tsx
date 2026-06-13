@@ -2,8 +2,14 @@
 import React,{useState} from 'react'
 import { Menu, X, House, Settings, User } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-function SidebarDeFi() {
+export interface SidebarDeFiProps{
+  endpoints:[string,string][],
+}
+
+function SidebarDeFi({endpoints}:SidebarDeFiProps) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const toggleSidebar = () => setIsOpen((prev)=>!prev);
   return (
@@ -28,11 +34,15 @@ function SidebarDeFi() {
     </div>
 
     <nav className='flex flex-col gap-1 p-2 font-geist'>
-      <Link href="/binance" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors text-center font-medium'>Binance</Link>
-      <Link href="/bybit" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>ByBit</Link>
-      <Link href="/huobi" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>Huobi</Link>
-      <Link href="/mexc" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>MEXC</Link>
-      <Link href="/okx" className='flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors font-medium'>OKX</Link>
+      {endpoints.map((item)=>{
+        const href = item[0];
+        const name = item[1]; 
+        console.log(href)
+        const isActive = href === pathname;
+        return (
+          <Link href={href} key={href} className={`flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors text-center font-medium ${isActive ? 'text-purple-600 bg-purple-500/5' : 'text-zinc-400'}`}>{name}</Link>
+        )
+      })}
     </nav>
     </aside>
     </>

@@ -27,10 +27,10 @@ const page = () => {
     limit:timeframe.limit,
     interval: timeframe.interval,
   });
-  const changeTimeFrame = (fields:Partial<CurrentChart>) => (
-    setTimeframe((prev)=>({...prev,...fields}))
+  const changeTimeFrame = (interval:string,limit:string,symbol:string) => (
+    setTimeframe((prev)=>({...prev,
+      interval:interval,symbol:symbol,limit:limit}))
   );
-
   if (isLoading) {
     return (
       <div className="flex h-screen w-full items-center justify-center">

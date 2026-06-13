@@ -9,7 +9,6 @@ import {
   Tooltip,
 } from "recharts";
 import { ChartDataItem } from "@/store/services/bybitApiSlice";
-import { CurrentChart } from "@/app/bybit/page";
 
 interface TimeFrames{
   label: string,
@@ -28,8 +27,6 @@ interface DataCharts {
 
 const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,timeframes}: DataCharts) => {
 
-
-
   const priceChange = useMemo(()=>{
     if (!data || data.length < 2) return null;
     const firstPrice = data[0].price;
@@ -43,7 +40,7 @@ const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,timeframes}:
   },[data])
 
   return (
-    <div className="w-full max-w-4xl rounded-lg border border-[#2b2f3a] bg-[#17181e] p-6 font-sans shadow-xl h-min">
+    <div className="w-full max-w-6xl rounded-lg border border-[#2b2f3a] bg-[#17181e] p-6 font-sans shadow-xl h-min">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <span className="text-lg font-bold text-gray-200">{symbol}</span>
@@ -62,7 +59,7 @@ const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,timeframes}:
                   )
                 }
                 key={index}
-                className={`hover:bg-slate-700 rounded-sm p-3 cursor-pointer ${isActive ? "bg-slate-700" : "bg-slate-600"}`}
+                className={`hover:bg-slate-800 rounded-sm p-3 cursor-pointer ${isActive ? "bg-slate-800" : "bg-slate-700"}`}
               >
                 {item.label}
               </span>
@@ -73,7 +70,7 @@ const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,timeframes}:
 
       <div className="h-96 w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data}>
+          <AreaChart data={data} className="p-1" >
             <defs>
               <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor={`${priceChange?.isPositive ? '#03c087':'#d80137'}`} stopOpacity={0.25} />
@@ -88,7 +85,7 @@ const ByBitCharts = ({data,symbol,onChangeTimeframe,currentInterval,timeframes}:
               axisLine={false}
               tickLine={false}
               tick={{ fill: "#707a8a", fontSize: 11 }}
-              dy={10}
+              tickMargin={12}
               tickFormatter={(timestamp) => {
                 return new Date(timestamp).toLocaleTimeString([], {
                   hour: "2-digit",

@@ -1,26 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Переопределение системных шрифтов на кастомные переменные из next/font */
+
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   --font-geist: var(--font-geist-sans);
-
-  /* Финтех палитра  */
-  --color-bg-main: #0b0e11;       /* Глубокий темный фон  */
-  --color-bg-card: #161a1e;       /* Фон для панелей, виджетов и карточек */
-  --color-bg-hover: #21262c;      /* Состояние ховера для элементов */
+  --color-bg-main: #0b0e11;     
+  --color-bg-card: #161a1e;       
+  --color-bg-hover: #21262c;      
   
-  --color-crypto-up: #0ecb81;     /* Зеленый для роста (лонг, покупка) */
-  --color-crypto-down: #f6465d;   /* Красный для падения (шорт, продажа) */
+  --color-crypto-up: #0ecb81;    
+  --color-crypto-down: #f6465d; 
   
-  --color-text-primary: #eaecef;  /* Основной белый текст */
-  --color-text-secondary: #848e9c;/* Приглушенный серый текст для лейблов */
+  --color-text-primary: #eaecef;  
+  --color-text-secondary: #848e9c;
   
-  --color-border-primary: #2b3139;/* Тонкие границы между панелями */
+  --color-border-primary: #2b3139;
 }
 
-/* Базовые стили для приложения */
+
 @layer base {
   html, body {
     background-color: var(--color-bg-main);
