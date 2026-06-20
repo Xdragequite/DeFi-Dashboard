@@ -16,6 +16,13 @@ const TIMEFRAMES = [
   { label: "1D",  interval: "30m", limit: "48", apiLabel: '' },
   { label: "1M",  interval: "1d",  limit: "30", apiLabel: '' },
 ];
+const symbols: string[] = [
+  'BTCUSDT',
+  'ETHUSDT',
+  'SOLUSDT',
+  'BNBUSDT',
+  'XRPUSDT',
+];
 const page = () => {
   const [timeframe, setTimeframe] = useState<CurrentChart>({
     interval:'1h',
@@ -31,6 +38,9 @@ const page = () => {
     setTimeframe((prev)=>({...prev,
       interval:interval,symbol:symbol,limit:limit}))
   );
+  const changeCurrentSymbol = (symbol:string) => {
+    setTimeframe((prev) => ({ ...prev, symbol: symbol }));
+  };
   if (isLoading) {
     return (
       <div className="flex h-screen w-full items-center justify-center">
@@ -47,7 +57,7 @@ const page = () => {
     )
   }
 
-  return <Charts data={data} symbol="BTCUSDT" onChangeTimeframe={changeTimeFrame} currentInterval={timeframe.interval} timeframes={TIMEFRAMES}/>
+  return <Charts data={data} onChangeCurrentSymbol={changeCurrentSymbol} symbol={timeframe.symbol} onChangeTimeframe={changeTimeFrame} currentInterval={timeframe.interval} timeframes={TIMEFRAMES} symbols={symbols}/>
 }
 
 export default page

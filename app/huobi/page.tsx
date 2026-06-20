@@ -16,11 +16,17 @@ const TIMEFRAMES = [
   { label: "1D",  interval: "60min", limit: "12", apiLabel: '' },
   { label: "1M",  interval: "1day",  limit: "30", apiLabel: '' },
 ];
-
+const symbols: string[] = [
+  'BTCUSDT',
+  'ETHUSDT',
+  'SOLUSDT',
+  'BNBUSDT',
+  'XRPUSDT',
+];
 const page = () => {
   const [timeframe, setTimeframe] = useState<CurrentChart>({
     period: '1min',     
-    symbol: 'btcusdt',  
+    symbol: 'BTCUSDT',  
     size: 60,           
   });
   const { data, error, isLoading } = useGethuobisChartsQuery({
@@ -33,7 +39,9 @@ const page = () => {
     setTimeframe((prev)=>({...prev,
       period:interval,symbol:symbol,size:Number(limit)}))
   );
-
+  const changeCurrentSymbol = (symbol:string) => {
+    setTimeframe((prev) => ({ ...prev, symbol: symbol }));
+  };
   if (isLoading) {
     return (
       <div className="flex h-screen w-full items-center justify-center">
@@ -50,7 +58,7 @@ const page = () => {
     )
   }
 
-  return <Charts data={data} symbol="BTCUSDT" onChangeTimeframe={changeTimeFrame} currentInterval={timeframe.period} timeframes={TIMEFRAMES}/>
+  return <Charts data={data} symbol={timeframe.symbol} onChangeCurrentSymbol={changeCurrentSymbol}  onChangeTimeframe={changeTimeFrame} currentInterval={timeframe.period} timeframes={TIMEFRAMES} symbols={symbols}/>
 }
 
 export default page

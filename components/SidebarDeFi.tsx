@@ -15,7 +15,7 @@ function SidebarDeFi({endpoints}:SidebarDeFiProps) {
   return (
     <>
     {isOpen && (
-      <div className="fixed inset-0 z-40 bg-black/50 transition-opacity lg:hidden" onClick={toggleSidebar}></div>
+      <div className="fixed inset-0 z-100 bg-black/50 transition-opacity lg:hidden" onClick={toggleSidebar}></div>
     )}
     <Menu onClick={toggleSidebar} size={24} className={`mt-5 ml-5 absolute transition-all duration-300 ease-in-out ${isOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
     <aside className={`fixed lg:relative inset-y-0 rounded-b-xl w-52 bg-zinc-950 border-r border-b border-zinc-800/80 transform transition-all duration-300 ease-in-out 
@@ -37,7 +37,6 @@ function SidebarDeFi({endpoints}:SidebarDeFiProps) {
       {endpoints.map((item)=>{
         const href = item[0];
         const name = item[1]; 
-        console.log(href)
         const isActive = href === pathname;
         return (
           <Link href={href} key={href} className={`flex items-center justify-center px-4 py-3 rounded-lg text-zinc-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors text-center font-medium ${isActive ? 'text-purple-600 bg-purple-500/5' : 'text-zinc-400'}`}>{name}</Link>
