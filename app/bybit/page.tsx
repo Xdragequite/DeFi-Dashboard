@@ -21,7 +21,6 @@ const symbols: string[] = [
   'ETHUSDT',
   'SOLUSDT',
   'BNBUSDT',
-  'XRPUSDT',
 ];
 const page = () => {
   const [timeframe, setTimeframe] = useState<CurrentChart>({
