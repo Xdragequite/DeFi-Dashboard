@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { counterSlice } from "./slices/testSlice";
 import { bybitApi } from "./services/bybitApiSlice";
 import { binanceApi } from "./services/binanceApiSlice";
 import { huobiApi } from "./services/huobiApiSlice";
@@ -8,7 +7,6 @@ import { okxApi } from "./services/okxApiSlice";
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      [counterSlice.name]: counterSlice.reducer,
       [bybitApi.reducerPath]: bybitApi.reducer,
       [binanceApi.reducerPath]: binanceApi.reducer,
       [huobiApi.reducerPath]: huobiApi.reducer,

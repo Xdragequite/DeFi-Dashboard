@@ -39,8 +39,8 @@ const ByBitCharts = ({
 }: DataCharts) => {
   const priceChange = useMemo(() => {
     if (!data || data.length < 2) return null;
-    const firstPrice = data[0].price;
-    const lastPrice = data[data.length - 1].price;
+    const firstPrice = data[0]?.price;
+    const lastPrice = data[data.length - 1]?.price;
     const difference = lastPrice - firstPrice;
     const percentage = (difference / firstPrice) * 100;
     return {
